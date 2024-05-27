@@ -10,11 +10,16 @@ const Logo: FC<Props> = ({ onClick, variant }) => {
   return (
     <Box onClick={onClick}>
       <Typography
-        variant="h4"
         component="h1"
-        sx={{ fontWeight: 700, '& span': { color: variant === 'primary' ? 'primary.main' : 'unset' } }}
+        sx={{
+          color: 'white',
+          fontSize: '32px',
+          width: '300px',
+          letterSpacing: '5px'
+        }}
+      // sx={{ fontWeight: 700, '& span': { color: variant === 'primary' ? 'primary.main' : 'unset' } }}
       >
-        Course<span>space</span>
+        NFT-Staking
       </Typography>
     </Box>
   )

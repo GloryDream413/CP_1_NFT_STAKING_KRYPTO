@@ -12,7 +12,7 @@ const MainLayout: FC<Props> = ({ children }) => {
     <Box component="main">
       <Header />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   )
 }
