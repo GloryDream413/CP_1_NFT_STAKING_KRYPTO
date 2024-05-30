@@ -1,4 +1,5 @@
 export interface Navigation {
   label: string
-  path: string
+  path: string,
+  isPublic : boolean
 }

@@ -1,14 +1,23 @@
-import { Button, styled } from '@mui/material';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { LoadingContext } from '@/myproviders/loading.context';
 
-const ButtonContainer = styled(Button)(({ theme, walletConnected }) => ({
-    backgroundColor: walletConnected ? '#ffd700' : '#2196f3',
-    color: walletConnected ? '#2196f3' : '#ffd700',
+import { Button, styled } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { useWeb3React } from "@web3-react/core";
+import { hooks } from "../../connectors/metaMask";
+
+const { useChainId, useAccounts, useIsActivating, useIsActive, useProvider } =
+    hooks;
+
+const ButtonContainer = styled(Button)(({ theme, flag }) => ({
+    backgroundColor: flag == 'Connect wallet' ? '#ffd700' : '#2196f3',
+    color: flag == 'Connect wallet' ? '#2196f3' : '#ffd700',
     border: 'none',
     borderRadius: '20px',
     padding: '10px 20px',
     fontSize: '16px',
     cursor: 'pointer',
+    marginLeft: '10px',
     transition: 'background-color 0.3s ease',
     '&:hover': {
         backgroundImage: 'linear-gradient(45deg, #00FFFF, #00FF00, #FFFF00, #FF00FF, #00FFFF)',
@@ -29,62 +38,58 @@ const ButtonContainer = styled(Button)(({ theme, walletConnected }) => ({
 }));
 
 const ConnectButton = () => {
-    const [walletConnected, setWalletConnected] = useState(false);
+
+    const { loading, setLoading } = useContext(LoadingContext);
     const [walletAddress, setWalletAddress] = useState('');
+    const { connector } = useWeb3React();
+    const provider = useProvider();
+    const accounts = useAccounts();
+    const isActivating = useIsActivating();
+    const isActive = useIsActive();
+
+    const [connectionState, setConnectionState] = useState(getConnectionStateAsString())
+
+    useEffect(() => {
+        setConnectionState(getConnectionStateAsString());
+    }, [isActivating, isActive])
 
     const connectWallet = async () => {
-        if (typeof window.ethereum !== 'undefined') {
-            try {
-                // Request access to the user's MetaMask wallet
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setLoading(true, "Connecting Wallet");
 
-                // Get the user's Ethereum address
-                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-                const userAddress = accounts[0];
-                setWalletAddress(userAddress);
+        if (!isActive && !isActivating) {
+            setLoading(true, "Activating");
+            await connector.activate(97);
+            setLoading(false, "Activating");
+        } else if (!isActivating) {
 
-                // Check if the user is connected to the correct network (BSC Testnet)
-                const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-                if (chainId !== '0x61') {
-                    await window.ethereum.request({
-                        method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: '0x61' }],
-                    });
-                }
-
-                setWalletConnected(true);
-            } catch (error) {
-                console.error('Error connecting to wallet:', error);
-                if (error.code === 4001) {
-                    alert('Please connect your MetaMask wallet to continue.');
-                } else {
-                    alert('An error occurred while connecting your wallet. Please try again later.');
-                }
+            if (connector?.deactivate) {
+                setLoading(true, "Activating");
+                await connector.deactivate();
+                setLoading(false, "Activating");
+            } else {
+                setLoading(true, "Disconnecting");
+                await connector.resetState();
+                setLoading(false, "Disconnecting");
             }
-        } else {
-            alert('Please install MetaMask to use this feature.');
         }
+        setLoading(false, "Connecting Wallet");
     };
 
-    const disconnectWallet = async () => {
-        setWalletConnected(false);
-        setWalletAddress('');
-    };
-
-    const formatWalletAddress = (address) => {
-        const firstChars = address.slice(0, 6);
-        const lastChars = address.slice(-4);
-        return `${firstChars}...${lastChars}`;
-    };
+    function getConnectionStateAsString() {
+        if (isActivating)
+            return ('Connecting...')
+        else if (!isActive)
+            return ('Connect wallet')
+        else
+            return ('Disconnect')
+    }
 
     return (
         <ButtonContainer
-            onClick={walletConnected ? disconnectWallet : connectWallet}
-            walletConnected={walletConnected}
+            onClick={connectWallet}
+            flag={connectionState}
         >
-            {walletConnected
-                ? `Connected: ${formatWalletAddress(walletAddress)}`
-                : 'Connect Wallet'}
+            {connectionState}
         </ButtonContainer>
     );
 };

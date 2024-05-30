@@ -1,3 +1,5 @@
+// 'use client'
+
 import React, { FC, useState } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -17,6 +19,8 @@ const Header: FC = () => {
     <Box sx={{
       backgroundColor: '#1A1D1F',
       border: '2px solid #373A3B',
+      // position: 'fixed',
+      // zIndex: '1000',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
