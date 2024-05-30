@@ -1,12 +1,13 @@
+<div style = "padding, width : 80%">
 <h1 align="center">
   NFT-Staking ( NextJS + Ethers : Web3 )
   <br />
 </h1>
 
-![screenshot](public/images/image_processing20220419-31825-1yzr3x9.png)
-
-
-Precisely the NFT Staking project is an essential project for the blockchain developers.
+<img src = "public/images/image_vote1.png" alt = "Loading Images" style = "border-radius : 20px; "/>
+<h3>
+Precisely the NFT-STAKING-PROJECT is an essential for blockchain developers.
+</h3>
 
 ## Live Demo
 
@@ -14,41 +15,47 @@ Take a look the live demo here 👉 [https://cp_1_nft_staking.vercel.app/](https
 
 ## Getting Started
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+I think you will all fully understand about the next.js and smart contracts.
+So I am here to talk about the important things in developing.
 
-First, run the development server:
+1. High quality
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Even you are a senior or beginner, this is the biggest problem.
+While we are on the progress onto the next milestones or more higly designed backend modules are staying lazy & lazy designed backend modules are modified more than 10 times a day.
+As the time goes by these kinds of modified codes are breaking the whole rules and eventually break the client's idea.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This is serious.
+Even the smallest code that you have absolutely confidence, error comes in handy for that.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Be sure, keeping the high quality coding-spirit in your mind, in your heart.
+Now then you will satisfy your Clients !
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+2. Responsibility
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+All people work at different levels of institutions as in the other areas of the world.
+Everybody spends a time.
+But why there's a change or difference among those volunteers?
+Some developers work really hard but lower budget or else other developers work differently and they earn more than the previous.
+
+The biggest point is Responsibility I think.
+I don't guarantee all things are like this but I do say with some confidence that you must have responsibility.
+You are responsible for the project for your client's idea to success.
+
+Developer's life belongs to the CLIENT'S IDEA !
+
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Lots of things to say but this time I will remind you the unique skills in Next.js
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- SSR ( Server Side Rendering ) - learn more : [Next.js Documentation](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering)
+- FSBR ( File System Based Routing) - learn more : [Next.js Documentation](https://nextjs.org/learn)
 
 ## Designed By
 
-<h1>
+<img src = "public/images/cp_avatar.jpg" 
+style = "border-radius : 20px"/>
+<h5 style = "color : blue; text-decoration : underline">
   CP : Senior Blockchain developer & Full Stack Engineering Specialist & Experienced Elasticsearch Engineer
-</h1>
+</h5>
+</div>
